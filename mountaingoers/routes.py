@@ -1,6 +1,8 @@
 #Criando as rotas e funções do projeto
 
-from flask import Flask, app, render_template, url_for
+from flask import Flask, render_template, url_for
+from mountaingoers import app
+
 
 
 @app.route("/")
