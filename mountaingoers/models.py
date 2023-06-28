@@ -1,9 +1,24 @@
 from datetime import datetime
 from mountaingoers import database
+from flask_login import UserMixin # Determina qual é class que vai gerenciar a estrutura de login
+from mountaingoers import app
+from mountaingoers import app, login_manager
+from . import database
 
 
-class Usuario(database.Model):
-    id = database.Column(database.String, primary_key=True)
+
+
+
+#função obrigatória que recebe o id de um usuario, e precisa retornar quem é esse usuario procurando no database
+
+@login_manager.user_loader
+def Load_usuario(id_usuario):
+    return Usuario.query.get(int(id_usuario))
+    
+
+
+class Usuario(database.Model, UserMixin):
+    id = database.Column(database.Integer, primary_key=True)
     username = database.Column(database.String, nullable=False)
     email = database.Column(database.String, nullable=False, unique=True)
     senha = database.Column(database.String, nullable=False)

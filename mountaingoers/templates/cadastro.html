@@ -1,0 +1,29 @@
+{% extends "homepage.html" %}
+
+{% block titulo  %}
+  MountainGoers - Cadastro
+{% endblock titulo  %}
+
+{% block body %}
+<h1>Página Cadastro</h1>
+
+    <form method="POST">
+    {{ form.csrf_token }}
+
+    {{ form.username.label() }}
+    {{ form.username() }}
+
+    {{ form.email.label() }}
+    {{ form.email() }}
+
+    {{ form.senha.label() }}
+    {{ form.senha() }}
+
+    {{ form.confirmacao_senha.label() }}
+    {{ form.confirmacao_senha() }}
+
+    {{ form.botao_confirmacao }}
+
+    <p class="text-center">Já tem uma conta? <a href="{{ url_for ('homepage')}}">Login</a></p>
+{% endblock body %}
+
